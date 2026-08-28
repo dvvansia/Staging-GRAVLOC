@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>GRAVLOC | Mission-Critical Procurement for Deep Space</title>
+  <title>GRAVLOC | Dashboard</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -130,13 +130,29 @@
     .btn-scale:active {
       transform: scale(0.96);
     }
-    /* Fix hero background on mobile */
-    .hero-bg {
-      background-image: linear-gradient(rgba(25, 28, 30, 0.7), rgba(25, 28, 30, 0.7)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJi4_xhn5mI-vSDlYqu2SA2iso77u44GgDUHRTnF4CPl8VDSsnletK5xy792bMApaTm5e85yIRpnXXbgNnfw_SSLXc0jiHTg4RSbWkCMcHbhZmC5P9mfDoTk28ndMCy5Sv6RkOUd_YMo0S_lm-irRQGqfN9ZPZmZJatIzohMjo_6Ge75NCz7wFIqgLC1z1DMnUvBjehm1l2avhD664Ly8iizg2GLjtNyi7mQ9HyWn5bqjgkfdNNV5dSA');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      width: 100%;
+    .category-sidebar-item {
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .category-sidebar-item:hover {
+      background: rgba(59, 40, 204, 0.06);
+      border-left-color: #3b28cc;
+    }
+    .category-sidebar-item.active {
+      background: rgba(59, 40, 204, 0.08);
+      border-left-color: #3b28cc;
+      font-weight: 600;
+    }
+    /* Mobile scroll fix */
+    .category-sidebar {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    @media (min-width: 768px) {
+      .category-sidebar {
+        max-height: 70vh;
+      }
     }
   </style>
 </head>
@@ -146,37 +162,35 @@
   <!-- ====== HEADER ====== -->
   <header class="bg-surface dark:bg-surface-container-low border-b border-outline-variant z-50 sticky top-0">
     <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
-      
+
       <!-- Brand + Mobile Menu Toggle -->
       <div class="flex items-center gap-4">
-        <!-- Mobile menu button -->
         <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
           <span class="material-symbols-outlined">menu</span>
         </button>
-        <!-- Logo -->
-        <a href="#" class="flex items-center">
+        <a href="/" class="flex items-center">
           <img alt="GRAVLOC Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJID81zmGX7zchqiqKZ37c8YC2UVhtHHVpfn99boKUb5ji3gy26m2tes6PtomToYoBCA_gAdh_AFkrVcf1SA4ZxZ_gpqA2jVy7gvROZlwgFQkFd_JJvxqf10lORiL5Z29mT1lGPBrc6zYFMWLhS4CuZY6lyXzFUeWHbwrI6YtLItHMqgGU3g5qcC_la4YdhD6zC8311T1gcgXaArLOmkOeid5aOid4nHAHFLROOIue0rt_S0RKzrwf2QLNzYKB1Sekeaw">
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-8">
-        <a class="font-title-md text-[18px] font-medium text-primary border-b-2 border-primary pb-1" href="#">Home</a>
+        <a class="font-title-md text-[18px] font-medium text-primary border-b-2 border-primary pb-1" href="/">Home</a>
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Catalogue</a>
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Supplier Program</a>
       </nav>
 
       <!-- Right Actions -->
       <div class="flex items-center gap-2 md:gap-4">
-        <a href="#" class="font-title-md text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
-        <a href="#" class="bg-primary text-on-primary px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-title-md text-[14px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1" style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);">Sign Up</a>
+        <a href="#" class="font-title-md text-[14px] md:text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
+        <a href="#" class="bg-primary text-on-primary px-4 md:px-6 py-1.5 md:py-2.5 rounded-lg font-title-md text-[13px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1" style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);">Sign Up</a>
       </div>
     </div>
 
     <!-- Mobile Menu Panel -->
     <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
       <nav class="flex flex-col px-4 py-4 gap-2">
-        <a class="font-title-md text-[18px] font-medium text-primary" href="#">Home</a>
+        <a class="font-title-md text-[18px] font-medium text-primary" href="/">Home</a>
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Catalogue</a>
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Supplier Program</a>
       </nav>
@@ -186,208 +200,185 @@
   <!-- ====== MAIN ====== -->
   <main class="flex-grow">
 
-    <!-- ====== HERO ====== -->
-    <section class="hero-bg py-12 md:py-32 px-4 md:px-margin-desktop max-w-max-width mx-auto flex flex-col items-center text-center w-full">
-      <h1 class="font-display-lg text-[32px] md:text-[64px] md:leading-[72px] mb-4 md:mb-6 max-w-4xl tracking-tight text-white">
-        Mission-Critical Procurement for Deep Space
-      </h1>
-      <p class="font-body-lg text-base md:text-body-lg mb-8 md:mb-12 max-w-2xl text-white/80">
-        Source, verify, and procure space-grade components from trusted suppliers worldwide. Built for the rigorous demands of modern aerospace engineering.
-      </p>
+    <!-- ====== CATEGORIES SECTION (like satsearch.co) ====== -->
+    <section class="py-8 md:py-12 bg-surface-bright">
+      <div class="max-w-max-width mx-auto px-4 md:px-margin-desktop">
+        <div class="flex flex-col md:flex-row gap-6 md:gap-8">
 
-      <!-- Search Bar -->
-      <div class="w-full max-w-3xl mb-8 md:mb-12 relative group">
-        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <span class="material-symbols-outlined text-outline">search</span>
-        </div>
-        <input class="w-full pl-12 pr-4 py-3 md:py-5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface font-body-lg placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 shadow-level-1 transition-all" placeholder="Search Components, Specifications, or NSNs..." type="text">
-        <div class="absolute inset-y-0 right-2 flex items-center">
-          <button class="bg-surface-container-low text-on-surface-variant px-3 py-1.5 rounded-lg font-label-sm border border-outline-variant hover:bg-surface-container transition-colors hidden sm:block">
-            ⌘ K
-          </button>
-        </div>
-      </div>
+          <!-- Left: Category Sidebar -->
+          <aside class="md:w-72 lg:w-80 flex-shrink-0">
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-level-1 overflow-hidden">
+              <div class="p-4 border-b border-outline-variant/50">
+                <h2 class="font-title-md text-[16px] text-on-surface font-semibold flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[20px]">category</span>
+                  All Categories
+                </h2>
+              </div>
+              <div class="category-sidebar p-2">
+                <!-- Category items -->
+                <div class="category-sidebar-item active px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-primary">satellite_alt</span>
+                  <span class="font-medium">RF &amp; Antennas</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">124</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">bolt</span>
+                  <span>Power Systems</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">86</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">architecture</span>
+                  <span>Structures &amp; Fasteners</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">42</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">thermostat</span>
+                  <span>Thermal Systems</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">37</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">memory</span>
+                  <span>Electronics &amp; PCBs</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">56</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">science</span>
+                  <span>Testing &amp; Facilities</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">29</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">rocket_launch</span>
+                  <span>Propulsion</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">94</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">settings_voice</span>
+                  <span>ADCS</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">48</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">radio</span>
+                  <span>Communications</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">215</span>
+                </div>
+                <div class="category-sidebar-item px-3 py-2.5 rounded-lg flex items-center gap-3 text-sm">
+                  <span class="material-symbols-outlined text-[20px] text-on-surface-variant">battery_charging_full</span>
+                  <span>Batteries</span>
+                  <span class="ml-auto text-on-surface-variant/60 text-xs bg-surface-container px-2 py-0.5 rounded-full">73</span>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-        <a class="inline-flex justify-center items-center bg-primary text-on-primary px-6 md:px-8 py-2.5 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-primary/90 transition-colors duration-200 btn-scale shadow-level-1" href="#">
-          Explore Catalogue
-        </a>
-        <a class="inline-flex justify-center items-center bg-surface-container-lowest text-primary px-6 md:px-8 py-2.5 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-surface-container transition-colors duration-200 btn-scale shadow-level-1" href="#">
-          Join as Supplier
-        </a>
-      </div>
-    </section>
+          <!-- Right: Subcategory Cards -->
+          <div class="flex-1">
+            <!-- Category header -->
+            <div class="mb-6">
+              <h1 class="font-display-lg text-[28px] md:text-[36px] text-on-surface font-bold tracking-tight">RF &amp; Antennas</h1>
+              <p class="text-on-surface-variant text-sm md:text-base">124 components across 12 subcategories</p>
+            </div>
 
-    <!-- ====== CATEGORIES ====== -->
-    <section class="py-12 md:py-16 bg-surface-bright px-4 md:px-margin-desktop border-y border-outline-variant/50">
-      <div class="max-w-max-width mx-auto">
-        <div class="flex items-center justify-between mb-8 md:mb-10">
-          <h2 class="font-headline-lg text-2xl md:text-headline-lg text-on-surface">Browse by Subsystem</h2>
-          <a class="font-label-sm text-primary hover:text-primary/80 uppercase tracking-wider flex items-center gap-1 group" href="#">
-            View All Categories
-            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          <!-- 6 category cards (same as before) -->
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">satellite_alt</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">RF &amp; Antennas</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Transceivers, high-gain antennas, and communication payloads.</p>
-            </div>
-          </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">bolt</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Power Systems</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Solar arrays, batteries, EPS controllers, and power distribution.</p>
-            </div>
-          </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">architecture</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Structures &amp; Fasteners</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Chassis, deployable booms, space-rated brackets and hardware.</p>
-            </div>
-          </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">thermostat</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Thermal Systems</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Radiators, heat pipes, MLI blankets, and active cooling solutions.</p>
-            </div>
-          </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">memory</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Electronics &amp; PCBs</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Rad-hard microcontrollers, FPGAs, and avionics boards.</p>
-            </div>
-          </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">science</span>
-            </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Testing &amp; Facilities</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">TVAC chambers, vibration tables, and qualification services.</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+            <!-- Subcategory grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Subcategory cards -->
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">settings_input_antenna</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">18</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">High-Gain Antennas</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">Parabolic, phased array, and reflector antennas</p>
+              </a>
 
-    <!-- ====== FEATURED PRODUCTS ====== -->
-    <section class="py-12 md:py-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
-      <h2 class="font-headline-lg text-2xl md:text-headline-lg text-on-surface mb-8 md:mb-10">Featured Components</h2>
-      <div class="flex flex-col gap-6">
-        <!-- Product 1 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row relative">
-          <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfd4wcxiR4i08yUy76kzRo1maXqkoCl0ROsgGJAbKI7UwKe1-jRtzffX8pVxrEg60s8KmdvM5WoIYwmmygSN9z-wyU0C5P9Ndbktbhj82EGtKJg33w6AziOEajKdqwwUtx71YJMomtyZJhec8jD5xdepM8KsEtNHrri2Hw53k-AWPnvZM445dXhg-f12FrzU-YqMWrfhO7ObwjPh0B6Ksniw6kYoLLocgukEvQic2Aorg5O_0J5i2ZMA" alt="Reaction wheel">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">ADCS</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 9</span>
-            </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">RW-400 High-Torque Reaction Wheel</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Compact, low-jitter reaction wheel designed for demanding pointing requirements in microsatellite platforms. Features integrated drive electronics.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-primary uppercase tracking-wide text-xs md:text-sm">In Stock • Qty: 42</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
-            </div>
-          </div>
-        </div>
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">wifi</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">14</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">Transceivers</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">S-band, X-band, and Ka-band transceivers</p>
+              </a>
 
-        <!-- Product 2 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row">
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqBKGdYRfsuc6qDjdN2BD09PEdWERCN8ILtZxDwi-CvoIvUxQhdyD54aaOVJht4YhuB-_jUfdxsrbNw8HxXQS6oyS_VNBbrVJ-h7L1ByXjxELgzZQJyqe-4VAtsUv_rw2CLKHoKld9RLxKToiw0XHPsqV-V3jdROv9Ae0HNI4V3DZMGjKX0BGRDjidGjrHAjN1EokPTaIcRzpEysKaFRhDciFCbRBXyU9o550TaOM4OCC0fzOaUgKzUw" alt="Rad-hard SoC">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">AVIONICS</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 7</span>
-            </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">RadHard Cortex-M7 OBC Core</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Radiation-tolerant processing core with triple modular redundancy (TMR). Ideal for deep space mission critical command and data handling.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-outline uppercase tracking-wide text-xs md:text-sm">Lead Time: 12 Weeks</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
-            </div>
-          </div>
-        </div>
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">satellite</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">22</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">Communication Payloads</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">Complete communication subsystem modules</p>
+              </a>
 
-        <!-- Product 3 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row">
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIcdE6tlf9NfeIxPqfoYAef8ED2LXNAxIoUVZM059aSE6TOersnsDB2WMk3K4ZB12EkUP632a5FYFbuKfsfnwP5QzFNF1zfUBvIiw0SckzHcOa83eC4HaO_ne8jjtUgWuAmpsJd-Q6EjSGJjMRo89T1qNS60y9BzJGH7IeHVB5tf3cuMsLxmEfQR6TT3niNlUSjPXSNJ3VADsfZKXtlZQ74XfaYdjjyJa_3XWtlyyh9PM8cRjBeTIW_w" alt="Deployer system">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">DEPLOYMENT</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 9</span>
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">signal_cellular_alt</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">9</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">Amplifiers &amp; LNAs</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">Low-noise amplifiers and power amplifiers</p>
+              </a>
+
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">tune</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">11</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">Filters &amp; Diplexers</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">RF filters, diplexers, and multiplexers</p>
+              </a>
+
+              <a href="#" class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover">
+                <div class="flex items-start justify-between">
+                  <div class="p-2.5 bg-primary/10 rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">cable</span>
+                  </div>
+                  <span class="text-xs font-label-sm text-on-surface-variant/60 bg-surface-container px-2 py-0.5 rounded-full">16</span>
+                </div>
+                <h3 class="font-title-md text-[16px] text-on-surface mt-3 mb-1">Waveguides &amp; Coax</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant">Waveguide components and coaxial cables</p>
+              </a>
             </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">12U Orbit Deployer System (ODS)</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Flight-proven deployer for 12U form factors. Utilizes non-explosive actuators and provides telemetry for deployment confirmation.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-primary uppercase tracking-wide text-xs md:text-sm">In Stock • Qty: 3</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
+
+            <!-- View all link -->
+            <div class="mt-8 text-center">
+              <a href="#" class="inline-flex items-center gap-2 text-primary font-title-md text-[14px] font-semibold hover:underline">
+                View all 124 components in RF &amp; Antennas
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== TRUST BAR ====== -->
-    <section class="py-8 md:py-12 border-t border-outline-variant/30 bg-surface">
-      <div class="max-w-max-width mx-auto px-4 md:px-margin-desktop text-center">
-        <p class="font-label-sm text-outline uppercase tracking-widest mb-6 md:mb-8">Trusted by tier-1 aerospace integrators</p>
-        <div class="flex flex-wrap justify-center gap-6 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          <div class="h-8 w-24 md:w-32 bg-outline-variant/40 rounded-full"></div>
-          <div class="h-8 w-20 md:w-24 bg-outline-variant/40 rounded"></div>
-          <div class="h-8 w-28 md:w-40 bg-outline-variant/40 rounded-full"></div>
-          <div class="h-8 w-20 md:w-28 bg-outline-variant/40 rounded"></div>
-          <div class="h-8 w-24 md:w-32 bg-outline-variant/40 rounded-full hidden sm:block"></div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ====== FOOTER (as on www.gravloc.com) ====== -->
-  <footer class="bg-gradient-to-br from-inverse-surface via-primary-container to-accent-indigo border-t border-outline-variant">
-    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16 grid grid-cols-12 gap-6 md:gap-gutter">
+  <!-- ====== FOOTER (matching gravloc.com) ====== -->
+  <footer class="bg-gradient-to-br from-[#2e3132] via-[#3b28cc] to-[#2968ff] border-t border-outline-variant">
+    <div class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-12 md:py-16 grid grid-cols-12 gap-6 md:gap-gutter">
       <!-- Brand -->
       <div class="col-span-12 lg:col-span-4 space-y-4 md:space-y-6">
         <div class="flex items-center gap-2.5">
           <img alt="GRAVLOC" class="h-8 md:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.35)]" src="/images/White logo.png">
           <span class="font-headline-lg font-bold text-[18px] md:text-[20px] tracking-tight text-white leading-none">GRAVLOC</span>
         </div>
-        <p class="text-inverse-on-surface font-body-sm max-w-xs opacity-70 text-sm md:text-base">
+        <p class="text-[#f0f1f3] font-body-sm max-w-xs opacity-70 text-sm md:text-base">
           © 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.
         </p>
         <div class="flex gap-4">
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/company/gravloc/" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/gravloc/" target="_blank" rel="noopener noreferrer" class="text-[#f0f1f3] opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           </a>
-          <!-- Twitter (X) -->
-          <a href="https://x.com/Gravloc" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter">
+          <a href="https://x.com/Gravloc" target="_blank" rel="noopener noreferrer" class="text-[#f0f1f3] opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
           </a>
         </div>
@@ -397,8 +388,8 @@
       <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
         <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Platform</h4>
         <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/supplier">Supplier Program</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/waitlist">Catalogue</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="/supplier">Supplier Program</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="/waitlist">Catalogue</a></li>
         </ul>
       </div>
 
@@ -406,8 +397,8 @@
       <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
         <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Support</h4>
         <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Contact</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Feedback</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Contact</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Feedback</a></li>
         </ul>
       </div>
 
@@ -415,9 +406,9 @@
       <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
         <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Company</h4>
         <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">About Us</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Articles</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Careers</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">About Us</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Articles</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Careers</a></li>
         </ul>
       </div>
 
@@ -425,8 +416,8 @@
       <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
         <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Legal</h4>
         <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Privacy</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Terms</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Privacy</a></li>
+          <li><a class="text-[#c8c4d8] hover:text-white transition-colors text-body-sm" href="#">Terms</a></li>
         </ul>
       </div>
     </div>
@@ -450,6 +441,14 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
         toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      });
+    });
+
+    // Category sidebar active state
+    document.querySelectorAll('.category-sidebar-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.category-sidebar-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
       });
     });
   </script>
