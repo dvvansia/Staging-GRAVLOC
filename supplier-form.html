@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>GRAVLOC - Supplier Registration</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#3823c9",
+            "on-secondary-container": "#fefbff",
+            "primary-container": "#3b28cc",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#c3c6cf",
+            "on-background": "#191c1e",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f8f9fb",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f0f1f3",
+            "primary": "#2400ac",
+            "on-secondary": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#464555",
+            "on-tertiary-container": "#b6b9c2",
+            "surface": "#f8f9fb",
+            "surface-container-low": "#f3f4f6",
+            "tertiary-container": "#464a51",
+            "on-tertiary-fixed": "#181c22",
+            "surface-tint": "#5144e1",
+            "primary-fixed-dim": "#c4c0ff",
+            "on-tertiary-fixed-variant": "#43474e",
+            "on-primary-fixed": "#110068",
+            "outline-variant": "#c8c4d8",
+            "surface-container": "#edeef0",
+            "tertiary": "#30333a",
+            "tertiary-fixed": "#dfe2eb",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#003cac",
+            "primary-fixed": "#e3dfff",
+            "surface-container-high": "#e7e8ea",
+            "outline": "#777587",
+            "surface-container-highest": "#e1e2e4",
+            "background": "#f8f9fb",
+            "inverse-surface": "#2e3132",
+            "inverse-primary": "#c4c0ff",
+            "secondary-container": "#2968ff",
+            "surface-variant": "#e1e2e4",
+            "on-secondary-fixed": "#00164d",
+            "on-primary": "#ffffff",
+            "secondary": "#004fda",
+            "secondary-fixed-dim": "#b5c4ff",
+            "surface-dim": "#d9dadc",
+            "secondary-fixed": "#dbe1ff",
+            "on-primary-container": "#b6b2ff",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "margin-desktop": "40px",
+            gutter: "24px",
+            "max-width": "1440px",
+            unit: "4px",
+            "margin-mobile": "16px"
+          },
+          fontFamily: {
+            "body-lg": ["Inter"],
+            "title-md": ["Hanken Grotesk"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-lg": ["Hanken Grotesk"],
+            "body-md": ["Inter"],
+            "display-lg": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"]
+          },
+          fontSize: {
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+            "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }]
+          },
+          boxShadow: {
+            'level-1': '0px 4px 20px rgba(59, 40, 204, 0.04)',
+            'level-2': '0px 8px 30px rgba(59, 40, 204, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .form-input-styled {
+      @apply w-full border border-surface-container-low rounded-lg px-4 py-3 bg-surface-container-lowest text-on-surface font-body-md transition-all duration-200 outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim shadow-sm;
+    }
+    .form-label-styled {
+      @apply block font-label-sm text-label-sm text-on-surface-variant mb-1.5;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .section-indicator {
+      transition: background-color 0.3s ease;
+    }
+    .step-circle {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .step-circle:hover {
+      transform: scale(1.05);
+    }
+    .step-circle.active {
+      background-color: #3b28cc;
+      color: white;
+      border-color: #3b28cc;
+      box-shadow: 0 0 0 4px rgba(59, 40, 204, 0.15);
+    }
+    .step-circle.completed {
+      background-color: #004fda;
+      color: white;
+      border-color: #004fda;
+    }
+    .step-label.active {
+      color: #3b28cc;
+      font-weight: 600;
+    }
+    .step-label.completed {
+      color: #004fda;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+  <!-- ====== HEADER (matching index.html) ====== -->
+  <header class="bg-surface dark:bg-surface-container-low border-b border-outline-variant z-50 sticky top-0">
+    <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
+
+      <!-- Brand + Mobile Menu Toggle -->
+      <div class="flex items-center gap-4">
+        <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <a href="/" class="flex items-center">
+          <img alt="GRAVLOC Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJID81zmGX7zchqiqKZ37c8YC2UVhtHHVpfn99boKUb5ji3gy26m2tes6PtomToYoBCA_gAdh_AFkrVcf1SA4ZxZ_gpqA2jVy7gvROZlwgFQkFd_JJvxqf10lORiL5Z29mT1lGPBrc6zYFMWLhS4CuZY6lyXzFUeWHbwrI6YtLItHMqgGU3g5qcC_la4YdhD6zC8311T1gcgXaArLOmkOeid5aOid4nHAHFLROOIue0rt_S0RKzrwf2QLNzYKB1Sekeaw" />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/index">Home</a>
+        <a class="font-title-md text-[18px] font-medium text-primary border-b-2 border-primary pb-1" href="/catalogue">Catalogue</a>
+        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/suppliers">Supplier Program</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-2 md:gap-4">
+        <a href="/login" class="font-title-md text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
+        <a href="/signup" class="bg-primary text-on-primary px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-title-md text-[14px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1" style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
+      <nav class="flex flex-col px-4 py-4 gap-2">
+        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/index">Home</a>
+        <a class="font-title-md text-[18px] font-medium text-primary" href="/catalogue">Catalogue</a>
+        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/suppliers">Supplier Program</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="flex-grow w-full max-w-4xl mx-auto px-margin-mobile py-8 md:py-12 flex flex-col gap-8">
+
+    <!-- Header -->
+    <div class="text-center">
+      <h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Supplier Registration</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant">Join the GRAVLOC aerospace supply chain network.</p>
+    </div>
+
+    <!-- ====== STEP INDICATOR ====== -->
+    <div class="flex items-center justify-between max-w-2xl mx-auto w-full px-4" id="step-indicator">
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="step-circle w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-label-sm text-label-sm border-2 border-primary shadow-sm" data-step="1">1</div>
+        <span class="step-label font-label-sm text-label-sm text-primary font-semibold" data-step="1">Details</span>
+      </div>
+      <div class="h-0.5 bg-surface-container-high flex-1 max-w-[60px]"></div>
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="step-circle w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm border-2 border-surface-container-high" data-step="2">2</div>
+        <span class="step-label font-label-sm text-label-sm text-on-surface-variant" data-step="2">Contact</span>
+      </div>
+      <div class="h-0.5 bg-surface-container-high flex-1 max-w-[60px]"></div>
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="step-circle w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm border-2 border-surface-container-high" data-step="3">3</div>
+        <span class="step-label font-label-sm text-label-sm text-on-surface-variant" data-step="3">Contact Person</span>
+      </div>
+      <div class="h-0.5 bg-surface-container-high flex-1 max-w-[60px]"></div>
+      <!-- Step 4 -->
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="step-circle w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm border-2 border-surface-container-high" data-step="4">4</div>
+        <span class="step-label font-label-sm text-label-sm text-on-surface-variant" data-step="4">Review</span>
+      </div>
+    </div>
+
+    <!-- ====== FORM ====== -->
+    <form class="bg-surface-container-lowest shadow-level-1 rounded-xl p-6 md:p-8 flex flex-col gap-8 border border-surface-container-low relative overflow-hidden">
+
+      <!-- Left Accent Bar -->
+      <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl section-indicator"></div>
+
+      <!-- ====== SECTION 1: COMPANY DETAILS ====== -->
+      <section id="section-1" class="scroll-mt-20">
+        <div class="flex items-center gap-3 border-b border-surface-container-low pb-4 mb-6">
+          <span class="material-symbols-outlined text-primary">domain</span>
+          <h2 class="font-title-md text-title-md text-on-surface">Company Details</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Company Name (full width) -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="companyName">Company Name</label>
+            <input class="form-input-styled" id="companyName" placeholder="Enter company name" type="text" />
+          </div>
+
+          <!-- Logo Upload (full width) -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled">Company Logo</label>
+            <div class="border-2 border-dashed border-outline-variant rounded-lg p-6 flex flex-col items-center justify-center gap-2 bg-surface hover:bg-surface-container-low transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-on-surface-variant text-3xl">cloud_upload</span>
+              <span class="font-body-md text-body-md text-on-surface-variant text-center">Drag and drop your logo here, or <span class="text-primary font-medium">browse</span></span>
+              <span class="font-label-sm text-label-sm text-outline">SVG, PNG, JPG (max 5MB)</span>
+            </div>
+          </div>
+
+          <!-- What do you do? (full width) -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="whatDoYouDo">What do you do?</label>
+            <textarea class="form-input-styled resize-none" id="whatDoYouDo" placeholder="Briefly describe your company's core competencies and primary manufacturing capabilities..." rows="4"></textarea>
+          </div>
+
+          <!-- Website -->
+          <div>
+            <label class="form-label-styled" for="website">Website</label>
+            <input class="form-input-styled" id="website" placeholder="https://example.com" type="url" />
+          </div>
+
+          <!-- Year Founded + Employees (side by side) -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="form-label-styled" for="yearFounded">Year Founded</label>
+              <input class="form-input-styled" id="yearFounded" placeholder="YYYY" type="number" />
+            </div>
+            <div>
+              <label class="form-label-styled" for="employees">Number of Employees</label>
+              <select class="form-input-styled appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23464555%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1.2em_1.2em] pr-10" id="employees">
+                <option value="">Select range</option>
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-200">51-200</option>
+                <option value="201-500">201-500</option>
+                <option value="501-1000">501-1000</option>
+                <option value="1000+">1000+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 2: CONTACT INFO ====== -->
+      <section id="section-2" class="scroll-mt-20 pt-4 border-t border-surface-container-low">
+        <div class="flex items-center gap-3 border-b border-surface-container-low pb-4 mb-6">
+          <span class="material-symbols-outlined text-primary">location_on</span>
+          <h2 class="font-title-md text-title-md text-on-surface">Contact Info</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Street -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="street">Street Address</label>
+            <input class="form-input-styled" id="street" placeholder="123 Industrial Parkway" type="text" />
+          </div>
+
+          <!-- Street Line 2 -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="street2">Street Line 2 (Optional)</label>
+            <input class="form-input-styled" id="street2" placeholder="Suite, Unit, Building" type="text" />
+          </div>
+
+          <!-- City + State -->
+          <div>
+            <label class="form-label-styled" for="city">City</label>
+            <input class="form-input-styled" id="city" placeholder="City" type="text" />
+          </div>
+          <div>
+            <label class="form-label-styled" for="state">State / Province</label>
+            <input class="form-input-styled" id="state" placeholder="State" type="text" />
+          </div>
+
+          <!-- Zip + Country -->
+          <div>
+            <label class="form-label-styled" for="zip">Zip / Postal Code</label>
+            <input class="form-input-styled" id="zip" placeholder="Postal Code" type="text" />
+          </div>
+          <div>
+            <label class="form-label-styled" for="country">Country</label>
+            <select class="form-input-styled appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23464555%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1.2em_1.2em] pr-10" id="country">
+              <option value="">Select Country</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="UK">United Kingdom</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="JP">Japan</option>
+              <option value="IN">India</option>
+              <option value="AU">Australia</option>
+            </select>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="linkedin">LinkedIn URL (Optional)</label>
+            <input class="form-input-styled" id="linkedin" placeholder="https://linkedin.com/company/..." type="url" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 3: POINT OF CONTACT ====== -->
+      <section id="section-3" class="scroll-mt-20 pt-4 border-t border-surface-container-low">
+        <div class="flex items-center gap-3 border-b border-surface-container-low pb-4 mb-6">
+          <span class="material-symbols-outlined text-primary">person</span>
+          <h2 class="font-title-md text-title-md text-on-surface">Point of Contact</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- First Name + Last Name -->
+          <div>
+            <label class="form-label-styled" for="firstName">First Name</label>
+            <input class="form-input-styled" id="firstName" placeholder="Jane" type="text" />
+          </div>
+          <div>
+            <label class="form-label-styled" for="lastName">Last Name</label>
+            <input class="form-input-styled" id="lastName" placeholder="Doe" type="text" />
+          </div>
+
+          <!-- Role -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="role">Role / Job Title</label>
+            <input class="form-input-styled" id="role" placeholder="Director of Sales" type="text" />
+          </div>
+
+          <!-- Email -->
+          <div class="md:col-span-2">
+            <label class="form-label-styled" for="email">Business Email</label>
+            <input class="form-input-styled" id="email" placeholder="jane.doe@company.com" type="email" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 4: REVIEW & SUBMIT ====== -->
+      <section id="section-4" class="scroll-mt-20 pt-4 border-t border-surface-container-low">
+        <div class="flex items-center gap-3 border-b border-surface-container-low pb-4 mb-6">
+          <span class="material-symbols-outlined text-primary">checklist</span>
+          <h2 class="font-title-md text-title-md text-on-surface">Review &amp; Submit</h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Summary -->
+          <div class="bg-surface-container-low rounded-lg p-4 text-sm text-on-surface-variant">
+            <p class="font-body-md text-body-md text-on-surface font-semibold mb-2">Please review your information:</p>
+            <ul class="list-disc list-inside space-y-1 text-on-surface-variant">
+              <li><strong>Company:</strong> <span class="text-on-surface">[Company Name]</span></li>
+              <li><strong>Contact:</strong> <span class="text-on-surface">[Street, City, State, Country]</span></li>
+              <li><strong>Point of Contact:</strong> <span class="text-on-surface">[First Name Last Name, Role, Email]</span></li>
+            </ul>
+          </div>
+
+          <!-- Terms -->
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input class="mt-1 border-surface-container-high rounded text-primary focus:ring-primary h-5 w-5 bg-surface-container-lowest cursor-pointer" type="checkbox" />
+            <span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+              I certify that the information provided is accurate and that I am authorized to submit this application on behalf of the company. I agree to the <a href="#" class="text-primary hover:underline">GRAVLOC Supplier Terms &amp; Conditions</a>.
+            </span>
+          </label>
+
+          <!-- Submit -->
+          <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-surface-container-low">
+            <button class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider hover:text-primary transition-colors flex items-center gap-2" type="button">
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+              Back
+            </button>
+            <button class="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95" type="button">
+              Register as Supplier
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </form>
+
+  </main>
+
+  <!-- ====== FOOTER (matching index.html) ====== -->
+  <footer class="bg-gradient-to-br from-inverse-surface via-primary-container to-[#2968ff] border-t border-outline-variant mt-12">
+    <div class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-12 md:py-16 grid grid-cols-12 gap-6 md:gap-gutter">
+
+      <!-- Brand Column -->
+      <div class="col-span-12 lg:col-span-4 space-y-4 md:space-y-6">
+        <div class="flex items-center gap-2.5">
+          <img alt="GRAVLOC" class="h-8 md:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.35)]" src="/images/White logo.png" />
+          <span class="font-headline-lg font-bold text-[18px] md:text-[20px] tracking-tight text-white leading-none">GRAVLOC</span>
+        </div>
+        <p class="text-inverse-on-surface font-body-sm max-w-xs opacity-70 text-sm md:text-base">
+          © 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.
+        </p>
+        <div class="flex gap-4">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/gravloc/" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <!-- Twitter (X) -->
+          <a href="https://x.com/Gravloc" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
+        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Platform</h4>
+        <ul class="space-y-2">
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/suppliers">Supplier Program</a></li>
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/catalogue">Catalogue</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
+        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Support</h4>
+        <ul class="space-y-2">
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Contact</a></li>
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Feedback</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
+        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Company</h4>
+        <ul class="space-y-2">
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">About Us</a></li>
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Articles</a></li>
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
+        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Legal</h4>
+        <ul class="space-y-2">
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Privacy</a></li>
+          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Terms</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // Mobile menu toggle
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (toggleBtn && mobileMenu) {
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+        const icon = this.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+      });
+    }
+    // Close mobile menu on any link click
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      });
+    });
+
+    // Step indicator scroll tracking
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = [
+        document.getElementById('section-1'),
+        document.getElementById('section-2'),
+        document.getElementById('section-3'),
+        document.getElementById('section-4')
+      ];
+
+      const circles = document.querySelectorAll('.step-circle');
+      const labels = document.querySelectorAll('.step-label');
+
+      function updateSteps() {
+        let currentSection = 0;
+        const scrollPosition = window.scrollY + 150;
+
+        sections.forEach((section, index) => {
+          if (section) {
+            const offsetTop = section.offsetTop;
+            const offsetBottom = offsetTop + section.offsetHeight;
+            if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+              currentSection = index;
+            }
+          }
+        });
+
+        circles.forEach((circle, index) => {
+          const label = labels[index];
+
+          circle.classList.remove('active', 'completed');
+          circle.className = 'step-circle w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm border-2 border-surface-container-high';
+          if (label) {
+            label.classList.remove('active', 'completed');
+            label.className = 'step-label font-label-sm text-label-sm text-on-surface-variant';
+          }
+
+          if (index === currentSection) {
+            circle.classList.add('active');
+            circle.className = 'step-circle w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-label-sm text-label-sm border-2 border-primary shadow-sm';
+            if (label) {
+              label.classList.add('active');
+              label.className = 'step-label font-label-sm text-label-sm text-primary font-semibold';
+            }
+          } else if (index < currentSection) {
+            circle.classList.add('completed');
+            circle.className = 'step-circle w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-label-sm text-label-sm border-2 border-secondary';
+            circle.innerHTML = '✓';
+            if (label) {
+              label.classList.add('completed');
+              label.className = 'step-label font-label-sm text-label-sm text-secondary';
+            }
+          } else {
+            circle.innerHTML = index + 1;
+          }
+        });
+      }
+
+      circles.forEach((circle, index) => {
+        circle.addEventListener('click', function() {
+          const targetSection = sections[index];
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      labels.forEach((label, index) => {
+        label.addEventListener('click', function() {
+          const targetSection = sections[index];
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      window.addEventListener('scroll', updateSteps);
+      setTimeout(updateSteps, 100);
+      window.addEventListener('resize', updateSteps);
+    });
+  </script>
+
+</body>
+</html>
