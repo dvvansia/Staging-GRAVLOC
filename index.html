@@ -3,7 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>GRAVLOC | Mission-Critical Procurement for Deep Space</title>
+
+  <!-- ====== STAGING ENVIRONMENT ====== -->
+  <!-- Prevent staging.gravloc.com from being indexed by search engines. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+
+  <!-- Canonical production URL. Remove/change this if staging is intentionally indexed. -->
+  <link rel="canonical" href="https://www.gravloc.com/">
+
+  <!-- ====== GRAVLOC FAVICON ====== -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#f8f9fb">
+  <title>GRAVLOC | Source space-grade components with confidence</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -130,13 +146,23 @@
     .btn-scale:active {
       transform: scale(0.96);
     }
-    /* Fix hero background on mobile */
+    /* Full-bleed hero background. Keeping the hero outside the content max-width
+       prevents the image from being clipped by the page container. */
     .hero-bg {
-      background-image: linear-gradient(rgba(25, 28, 30, 0.7), rgba(25, 28, 30, 0.7)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJi4_xhn5mI-vSDlYqu2SA2iso77u44GgDUHRTnF4CPl8VDSsnletK5xy792bMApaTm5e85yIRpnXXbgNnfw_SSLXc0jiHTg4RSbWkCMcHbhZmC5P9mfDoTk28ndMCy5Sv6RkOUd_YMo0S_lm-irRQGqfN9ZPZmZJatIzohMjo_6Ge75NCz7wFIqgLC1z1DMnUvBjehm1l2avhD664Ly8iizg2GLjtNyi7mQ9HyWn5bqjgkfdNNV5dSA');
+      background-image: linear-gradient(rgba(25, 28, 30, 0.68), rgba(25, 28, 30, 0.68)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJi4_xhn5mI-vSDlYqu2SA2iso77u44GgDUHRTnF4CPl8VDSsnletK5xy792bMApaTm5e85yIRpnXXbgNnfw_SSLXc0jiHTg4RSbWkCMcHbhZmC5P9mfDoTk28ndMCy5Sv6RkOUd_YMo0S_lm-irRQGqfN9ZPZmZJatIzohMjo_6Ge75NCz7wFIqgLC1z1DMnUvBjehm1l2avhD664Ly8iizg2GLjtNyi7mQ9HyWn5bqjgkfdNNV5dSA');
       background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      background-position: center center;
+      background-repeat: no-repeat;
       width: 100%;
+      min-height: 520px;
+    }
+
+    @media (max-width: 767px) {
+      .hero-bg {
+        min-height: 560px;
+        background-attachment: scroll;
+        background-position: center center;
+      }
     }
   </style>
 </head>
@@ -187,12 +213,12 @@
   <main class="flex-grow">
 
     <!-- ====== HERO ====== -->
-    <section class="hero-bg py-12 md:py-32 px-4 md:px-margin-desktop max-w-max-width mx-auto flex flex-col items-center text-center w-full">
+    <section class="hero-bg py-14 md:py-32 px-4 md:px-margin-desktop flex flex-col items-center justify-center text-center w-full">
       <h1 class="font-display-lg text-[32px] md:text-[64px] md:leading-[72px] mb-4 md:mb-6 max-w-4xl tracking-tight text-white">
-        Mission-Critical Procurement for Deep Space
+        Source space-grade components with confidence
       </h1>
       <p class="font-body-lg text-base md:text-body-lg mb-8 md:mb-12 max-w-2xl text-white/80">
-        Source, verify, and procure space-grade components from trusted suppliers worldwide. Built for the rigorous demands of modern aerospace engineering.
+        Discover, compare, and verify mission-critical hardware from trusted global suppliers. The procurement engine for the next frontier.
       </p>
 
       <!-- Search Bar -->
@@ -201,19 +227,14 @@
           <span class="material-symbols-outlined text-outline">search</span>
         </div>
         <input class="w-full pl-12 pr-4 py-3 md:py-5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface font-body-lg placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 shadow-level-1 transition-all" placeholder="Search Components, Specifications, or NSNs..." type="text">
-        <div class="absolute inset-y-0 right-2 flex items-center">
-          <button class="bg-surface-container-low text-on-surface-variant px-3 py-1.5 rounded-lg font-label-sm border border-outline-variant hover:bg-surface-container transition-colors hidden sm:block">
-            ⌘ K
-          </button>
-        </div>
       </div>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-        <a class="inline-flex justify-center items-center bg-primary text-on-primary px-6 md:px-8 py-2.5 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-primary/90 transition-colors duration-200 btn-scale shadow-level-1" href="#">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md sm:max-w-none">
+        <a class="inline-flex justify-center items-center bg-primary text-on-primary w-full sm:w-auto px-5 md:px-8 py-3 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-primary/90 transition-colors duration-200 btn-scale shadow-level-1" href="#">
           Explore Catalogue
         </a>
-        <a class="inline-flex justify-center items-center bg-surface-container-lowest text-primary px-6 md:px-8 py-2.5 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-surface-container transition-colors duration-200 btn-scale shadow-level-1" href="#">
+        <a class="inline-flex justify-center items-center bg-surface-container-lowest text-primary w-full sm:w-auto px-5 md:px-8 py-3 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-surface-container transition-colors duration-200 btn-scale shadow-level-1" href="#">
           Join as Supplier
         </a>
       </div>
@@ -229,61 +250,43 @@
             <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           <!-- 6 category cards (same as before) -->
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">satellite_alt</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">RF &amp; Antennas</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Transceivers, high-gain antennas, and communication payloads.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">RF &amp; Antennas</h3>
           </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">bolt</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Power Systems</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Solar arrays, batteries, EPS controllers, and power distribution.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Power Systems</h3>
           </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">architecture</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Structures &amp; Fasteners</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Chassis, deployable booms, space-rated brackets and hardware.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Structures &amp; Fasteners</h3>
           </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">thermostat</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Thermal Systems</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Radiators, heat pipes, MLI blankets, and active cooling solutions.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Thermal Systems</h3>
           </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">memory</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Electronics &amp; PCBs</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">Rad-hard microcontrollers, FPGAs, and avionics boards.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Electronics &amp; PCBs</h3>
           </a>
-          <a class="bg-surface-container-lowest p-5 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-start gap-3 md:gap-4 group" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
+            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
               <span class="material-symbols-outlined text-[24px] md:text-[28px]">science</span>
             </div>
-            <div>
-              <h3 class="font-title-md text-[16px] md:text-[18px] text-on-surface mb-1">Testing &amp; Facilities</h3>
-              <p class="font-body-md text-[13px] md:text-[14px] text-on-surface-variant line-clamp-2">TVAC chambers, vibration tables, and qualification services.</p>
-            </div>
+            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Testing &amp; Facilities</h3>
           </a>
         </div>
       </div>
@@ -369,68 +372,95 @@
 
   </main>
 
-  <!-- ====== FOOTER (as on www.gravloc.com) ====== -->
-  <footer class="bg-gradient-to-br from-inverse-surface via-primary-container to-accent-indigo border-t border-outline-variant">
-    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16 grid grid-cols-12 gap-6 md:gap-gutter">
-      <!-- Brand -->
-      <div class="col-span-12 lg:col-span-4 space-y-4 md:space-y-6">
-        <div class="flex items-center gap-2.5">
-          <img alt="GRAVLOC" class="h-8 md:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.35)]" src="/images/White logo.png">
-          <span class="font-headline-lg font-bold text-[18px] md:text-[20px] tracking-tight text-white leading-none">GRAVLOC</span>
-        </div>
-        <p class="text-inverse-on-surface font-body-sm max-w-xs opacity-70 text-sm md:text-base">
-          © 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.
-        </p>
-        <div class="flex gap-4">
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/company/gravloc/" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          </a>
-          <!-- Twitter (X) -->
-          <a href="https://x.com/Gravloc" target="_blank" rel="noopener noreferrer" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
-          </a>
-        </div>
+  <!-- Footer -->
+<footer class="bg-gradient-to-br from-inverse-surface via-primary-container to-accent-indigo dark:bg-surface-container-lowest border-t border-outline-variant">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-12 gap-gutter">
+    
+    <!-- Brand Column -->
+    <div class="col-span-12 lg:col-span-4 space-y-6">
+      <div class="flex items-center gap-2.5">
+        <img alt="GRAVLOC" class="h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.35)]" src="/images/White logo.png" />
+        <span class="font-headline-lg font-bold text-[20px] tracking-tight text-white leading-none">GRAVLOC</span>
       </div>
-
-      <!-- Platform -->
-      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
-        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Platform</h4>
-        <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/supplier">Supplier Program</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/waitlist">Catalogue</a></li>
-        </ul>
-      </div>
-
-      <!-- Support -->
-      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
-        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Support</h4>
-        <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Contact</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Feedback</a></li>
-        </ul>
-      </div>
-
-      <!-- Company -->
-      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
-        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Company</h4>
-        <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">About Us</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Articles</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Careers</a></li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div class="col-span-6 lg:col-span-2 space-y-3 md:space-y-4">
-        <h4 class="font-label-mono text-[10px] md:text-xs text-white uppercase tracking-widest">Legal</h4>
-        <ul class="space-y-2">
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Privacy</a></li>
-          <li><a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Terms</a></li>
-        </ul>
+      <p class="text-inverse-on-surface font-body-sm max-w-xs opacity-70">
+        © 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.
+      </p>
+      <div class="flex gap-4">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/gravloc/" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect width="4" height="12" x="2" y="9"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <!-- Twitter (X) -->
+        <a href="https://x.com/Gravloc" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+          </svg>
+        </a>
       </div>
     </div>
-  </footer>
+
+    <!-- Platform Column -->
+    <div class="col-span-6 lg:col-span-2 space-y-4">
+      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Platform</h4>
+      <ul class="space-y-2">
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/supplier">Supplier Program</a>
+        </li>
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/waitlist">Catalogue</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Support Column -->
+    <div class="col-span-6 lg:col-span-2 space-y-4">
+      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Support</h4>
+      <ul class="space-y-2">
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Contact</a>
+        </li>
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Feedback</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Company Column -->
+    <div class="col-span-6 lg:col-span-2 space-y-4">
+      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Company</h4>
+      <ul class="space-y-2">
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">About Us</a>
+        </li>
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Articles</a>
+        </li>
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Careers</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Legal Column -->
+    <div class="col-span-6 lg:col-span-2 space-y-4">
+      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Legal</h4>
+      <ul class="space-y-2">
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Privacy</a>
+        </li>
+        <li>
+          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Terms</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
 
   <!-- ====== SCRIPTS ====== -->
   <script>
