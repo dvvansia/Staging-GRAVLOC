@@ -292,7 +292,15 @@
       form.reportValidity();
       return;
     }
-
+    document.getElementById('signup-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (this.checkValidity()) {
+    const email = document.getElementById('email').value;
+    localStorage.setItem('gravloc_logged_in', 'true');
+    localStorage.setItem('gravloc_user_email', email);
+    window.location.href = '/index';
+  }
+});
     /*
       Connect this to your real GRAVLOC signup API.
       The page currently performs client-side validation only.
