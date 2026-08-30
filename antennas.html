@@ -117,7 +117,6 @@
       background-color: theme('colors.surface-variant');
       border-radius: 20px;
     }
-    /* Accordion: rotate chevron when open */
     details summary::-webkit-details-marker {
       display: none;
     }
@@ -131,7 +130,6 @@
     details[open] summary .chevron {
       transform: rotate(180deg);
     }
-    /* Search input inside dropdown */
     .filter-search-input {
       font-size: 14px;
       padding: 6px 10px;
@@ -146,6 +144,11 @@
       border-color: #2400ac;
       box-shadow: 0 0 0 2px rgba(36, 0, 172, 0.1);
     }
+    /* Remove underline from clickable card */
+    .product-card-link {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-body-md text-body-md">
@@ -153,7 +156,6 @@
   <!-- ====== HEADER (matching index.html) ====== -->
   <header class="bg-surface border-b border-outline-variant z-50 sticky top-0">
     <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
-      <!-- Brand + Mobile Menu Toggle -->
       <div class="flex items-center gap-4">
         <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
           <span class="material-symbols-outlined">menu</span>
@@ -167,14 +169,12 @@
         </a>
       </div>
 
-      <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-8">
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/index">Home</a>
         <a class="font-title-md text-[18px] font-medium text-primary border-b-2 border-primary pb-1" href="/catalogue">Catalogue</a>
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/suppliers">Supplier Program</a>
       </nav>
 
-      <!-- Right Actions -->
       <div class="flex items-center gap-2 md:gap-4">
         <a href="/login" class="font-title-md text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
         <a
@@ -185,7 +185,6 @@
       </div>
     </div>
 
-    <!-- Mobile Menu Panel -->
     <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
       <nav class="flex flex-col px-4 py-4 gap-2">
         <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/index">Home</a>
@@ -198,7 +197,7 @@
   <!-- ====== MAIN CONTENT LAYOUT ====== -->
   <div class="flex-1 w-full max-w-max-width mx-auto px-4 md:px-margin-desktop py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
 
-    <!-- ====== SIDEBAR FILTERS (Dropdown Accordion) ====== -->
+    <!-- ====== SIDEBAR FILTERS ====== -->
     <aside class="w-full lg:w-72 xl:w-80 flex-shrink-0 lg:sticky top-[88px] h-auto lg:h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar">
       <div class="flex justify-between items-center mb-6 border-b border-surface-variant pb-4">
         <h2 class="font-title-md text-title-md text-on-surface">Filters</h2>
@@ -382,7 +381,6 @@
           <h1 class="font-headline-lg text-headline-lg text-on-surface">
             Antennas <span class="text-title-md text-on-surface-variant font-normal">(300 items)</span>
           </h1>
-          <!-- Mobile Filter Toggle -->
           <button id="mobile-filter-toggle" class="lg:hidden flex items-center gap-2 border border-outline-variant rounded-lg px-4 py-2 text-body-md hover:bg-surface-container-low transition-colors">
             <span class="material-symbols-outlined text-sm">filter_list</span>
             Filters
@@ -392,14 +390,15 @@
 
       <!-- Product Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
-        <!-- Card 1 -->
-        <article class="bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col relative">
-          <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl"></div>
+
+        <!-- Card 1: S-Band Patch Antenna – now a clickable link -->
+        <a href="sbandpatchantenna.html" class="product-card-link group block bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col relative">
+          <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl group-hover:bg-primary-container transition-colors"></div>
           <div class="p-6 flex-1">
             <div class="w-12 h-12 bg-surface-container-low rounded-lg flex items-center justify-center mb-4 border border-surface-variant">
               <span class="material-symbols-outlined text-on-surface-variant">satellite_alt</span>
             </div>
-            <h3 class="font-title-md text-title-md text-on-surface mb-1">S-Band Patch Antenna</h3>
+            <h3 class="font-title-md text-title-md text-on-surface mb-1 group-hover:text-primary transition-colors">S-Band Patch Antenna</h3>
             <p class="font-label-sm text-label-sm text-on-surface-variant mb-4">NexGen Space</p>
             <div class="flex flex-wrap gap-2 mb-6">
               <span class="px-2 py-1 bg-surface-container-low text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider rounded border border-surface-variant">Flight Proven</span>
@@ -407,15 +406,15 @@
             </div>
           </div>
           <div class="p-6 pt-0 mt-auto border-t border-surface-variant bg-surface-container-lowest flex justify-between items-center">
-            <button class="text-primary hover:text-primary-container border border-primary hover:bg-primary-fixed transition-colors px-4 py-2 rounded-lg font-body-md text-sm flex items-center gap-2">
+            <button class="text-primary hover:text-primary-container border border-primary hover:bg-primary-fixed transition-colors px-4 py-2 rounded-lg font-body-md text-sm flex items-center gap-2 pointer-events-none">
               <span class="material-symbols-outlined text-sm">description</span>
               Datasheet
             </button>
-            <button class="text-on-surface-variant hover:text-primary transition-colors">
+            <button class="text-on-surface-variant hover:text-primary transition-colors pointer-events-none">
               <span class="material-symbols-outlined">bookmark_border</span>
             </button>
           </div>
-        </article>
+        </a>
 
         <!-- Card 2 -->
         <article class="bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
@@ -716,14 +715,11 @@
       });
     });
 
-    // Mobile filter toggle (show/hide sidebar on small screens)
+    // Mobile filter toggle
     const filterToggle = document.getElementById('mobile-filter-toggle');
     const sidebar = document.querySelector('aside');
     if (filterToggle && sidebar) {
       filterToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('hidden');
-        sidebar.classList.toggle('block');
-        // On mobile, toggle between block and hidden
         if (window.innerWidth < 1024) {
           sidebar.classList.toggle('hidden');
           sidebar.classList.toggle('block');
@@ -731,13 +727,11 @@
       });
     }
 
-    // Ensure sidebar visibility on resize
     window.addEventListener('resize', function() {
       if (window.innerWidth >= 1024) {
         sidebar.classList.remove('hidden');
         sidebar.classList.add('block');
       } else {
-        // On mobile, keep it hidden by default unless toggled
         if (!sidebar.classList.contains('block')) {
           sidebar.classList.add('hidden');
         }
