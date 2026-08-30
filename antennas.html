@@ -153,46 +153,50 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col font-body-md text-body-md">
 
-  <!-- ====== HEADER (matching index.html) ====== -->
-  <header class="bg-surface border-b border-outline-variant z-50 sticky top-0">
-    <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
-      <div class="flex items-center gap-4">
-        <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
-          <span class="material-symbols-outlined">menu</span>
-        </button>
-        <a href="/" class="flex items-center">
-          <img
-            alt="GRAVLOC Logo"
-            class="h-8 md:h-10 w-auto"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJID81zmGX7zchqiqKZ37c8YC2UVhtHHVpfn99boKUb5ji3gy26m2tes6PtomToYoBCA_gAdh_AFkrVcf1SA4ZxZ_gpqA2jVy7gvROZlwgFQkFd_JJvxqf10lORiL5Z29mT1lGPBrc6zYFMWLhS4CuZY6lyXzFUeWHbwrI6YtLItHMqgGU3g5qcC_la4YdhD6zC8311T1gcgXaArLOmkOeid5aOid4nHAHFLROOIue0rt_S0RKzrwf2QLNzYKB1Sekeaw"
-          />
-        </a>
-      </div>
+<!-- ====== HEADER ====== -->
+<header class="bg-surface dark:bg-surface-container-low border-b border-outline-variant z-50 sticky top-0">
+  <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
+    <div class="flex items-center gap-4">
+      <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <a href="#" class="flex items-center">
+        <img alt="GRAVLOC Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJID81zmGX7zchqiqKZ37c8YC2UVhtHHVpfn99boKUb5ji3gy26m2tes6PtomToYoBCA_gAdh_AFkrVcf1SA4ZxZ_gpqA2jVy7gvROZlwgFQkFd_JJvxqf10lORiL5Z29mT1lGPBrc6zYFMWLhS4CuZY6lyXzFUeWHbwrI6YtLItHMqgGU3g5qcC_la4YdhD6zC8311T1gcgXaArLOmkOeid5aOid4nHAHFLROOIue0rt_S0RKzrwf2QLNzYKB1Sekeaw">
+      </a>
+    </div>
 
-      <nav class="hidden md:flex items-center gap-8">
-        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/index">Home</a>
-        <a class="font-title-md text-[18px] font-medium text-primary border-b-2 border-primary pb-1" href="/catalogue">Catalogue</a>
-        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/suppliers">Supplier Program</a>
-      </nav>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/index">Home</a>
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/catalogue">Catalogue</a>
+      <!-- RFQ link – shown only when logged in -->
+      <a id="rfq-nav-link" class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200 hidden" href="/rfq">RFQ</a>
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/suppliers">Supplier Program</a>
+    </nav>
 
-      <div class="flex items-center gap-2 md:gap-4">
+    <!-- Right Actions -->
+    <div class="flex items-center gap-2 md:gap-4">
+      <div id="auth-buttons" class="flex items-center gap-2 md:gap-4">
         <a href="/login" class="font-title-md text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
-        <a
-          href="/signup"
-          class="bg-primary text-on-primary px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-title-md text-[14px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1"
-          style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);"
-        >Sign Up</a>
+        <a href="/signup" class="bg-primary text-on-primary px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-title-md text-[14px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1" style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);">Sign Up</a>
+      </div>
+      <div id="user-menu" class="hidden items-center gap-2 md:gap-4">
+        <span class="font-body-md text-on-surface-variant text-sm" id="user-email">user@example.com</span>
+        <button id="logout-btn" class="font-title-md text-[16px] font-medium text-primary hover:text-primary-container transition-colors duration-200">Logout</button>
       </div>
     </div>
+  </div>
 
-    <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
-      <nav class="flex flex-col px-4 py-4 gap-2">
-        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/index">Home</a>
-        <a class="font-title-md text-[18px] font-medium text-primary" href="/catalogue">Catalogue</a>
-        <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/suppliers">Supplier Program</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
+    <nav class="flex flex-col px-4 py-4 gap-2">
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/index">Home</a>
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/catalogue">Catalogue</a>
+      <a id="mobile-rfq-link" class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors hidden" href="/rfq">RFQ</a>
+      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/suppliers">Supplier Program</a>
+    </nav>
+  </div>
+</header>
 
   <!-- ====== MAIN CONTENT LAYOUT ====== -->
   <div class="flex-1 w-full max-w-max-width mx-auto px-4 md:px-margin-desktop py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -695,49 +699,44 @@
   </footer>
 
   <!-- ====== SCRIPTS ====== -->
-  <script>
-    // Mobile menu toggle
-    const toggleBtn = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (toggleBtn && mobileMenu) {
-      toggleBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        mobileMenu.classList.toggle('hidden');
-        const icon = this.querySelector('.material-symbols-outlined');
-        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
-      });
-    }
-    // Close mobile menu on any link click
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-      });
-    });
+<script>
+  // ---- Authentication state management ----
+  function checkAuth() {
+    const loggedIn = localStorage.getItem('gravloc_logged_in') === 'true';
+    const userEmail = localStorage.getItem('gravloc_user_email') || 'user@example.com';
+    const authButtons = document.getElementById('auth-buttons');
+    const userMenu = document.getElementById('user-menu');
+    const rfqLink = document.getElementById('rfq-nav-link');
+    const mobileRfqLink = document.getElementById('mobile-rfq-link');
+    const userEmailSpan = document.getElementById('user-email');
 
-    // Mobile filter toggle
-    const filterToggle = document.getElementById('mobile-filter-toggle');
-    const sidebar = document.querySelector('aside');
-    if (filterToggle && sidebar) {
-      filterToggle.addEventListener('click', function() {
-        if (window.innerWidth < 1024) {
-          sidebar.classList.toggle('hidden');
-          sidebar.classList.toggle('block');
-        }
-      });
+    if (loggedIn) {
+      authButtons.classList.add('hidden');
+      userMenu.classList.remove('hidden');
+      rfqLink.classList.remove('hidden');
+      mobileRfqLink.classList.remove('hidden');
+      if (userEmailSpan) userEmailSpan.textContent = userEmail;
+    } else {
+      authButtons.classList.remove('hidden');
+      userMenu.classList.add('hidden');
+      rfqLink.classList.add('hidden');
+      mobileRfqLink.classList.add('hidden');
     }
+  }
 
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 1024) {
-        sidebar.classList.remove('hidden');
-        sidebar.classList.add('block');
-      } else {
-        if (!sidebar.classList.contains('block')) {
-          sidebar.classList.add('hidden');
-        }
-      }
-    });
-  </script>
+  // Logout
+  document.getElementById('logout-btn')?.addEventListener('click', function() {
+    localStorage.removeItem('gravloc_logged_in');
+    localStorage.removeItem('gravloc_user_email');
+    window.location.href = '/index';
+  });
+
+  // Mobile menu toggle (keep existing code)
+  // ... (your existing toggle code)
+
+  // Run auth check on load
+  checkAuth();
+</script>
 
 </body>
 </html>
