@@ -243,5 +243,17 @@
   </div>
 </footer>
 
+<script>
+  // Add to the existing script in login.html
+document.getElementById('signin-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Simulate authentication
+  const email = document.getElementById('email').value;
+  localStorage.setItem('gravloc_logged_in', 'true');
+  localStorage.setItem('gravloc_user_email', email);
+  window.location.href = '/index';
+});
+</script>
+
 </body>
 </html>
