@@ -2,508 +2,227 @@
 <html class="light" lang="en">
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ====== STAGING ENVIRONMENT ====== -->
-  <!-- Prevent staging.gravloc.com from being indexed by search engines. -->
+  <!-- ====== STAGING - DO NOT INDEX ====== -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-
-  <!-- Canonical production URL. Remove/change this if staging is intentionally indexed. -->
   <link rel="canonical" href="https://www.gravloc.com/">
 
-  <!-- ====== GRAVLOC FAVICON ====== -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#f8f9fb">
   <title>GRAVLOC | Source space-grade components with confidence</title>
+  <meta name="description" content="Discover, compare, and verify mission-critical space hardware from trusted global suppliers.">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#3b28cc">
 
-  <!-- Material Symbols -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-  <script id="tailwind-config">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "secondary-fixed": "#dbe1ff",
-            "inverse-on-surface": "#f0f1f3",
-            "secondary-fixed-dim": "#b5c4ff",
-            "on-primary-fixed": "#110068",
-            "on-surface-variant": "#464555",
-            "secondary": "#004fda",
-            "inverse-primary": "#c4c0ff",
-            "outline": "#777587",
-            "surface-bright": "#f8f9fb",
-            "on-secondary": "#ffffff",
-            "on-tertiary-fixed-variant": "#43474e",
-            "tertiary-container": "#464a51",
-            "surface-tint": "#5144e1",
-            "on-tertiary": "#ffffff",
-            "on-primary-container": "#b6b2ff",
-            "on-error-container": "#93000a",
-            "outline-variant": "#c8c4d8",
+            primary: "#3b28cc",
             "on-primary": "#ffffff",
-            "surface": "#f8f9fb",
-            "tertiary": "#30333a",
-            "error-container": "#ffdad6",
-            "primary-container": "#3b28cc",
-            "inverse-surface": "#2e3132",
-            "primary-fixed-dim": "#c4c0ff",
-            "surface-variant": "#e1e2e4",
-            "surface-container-highest": "#e1e2e4",
-            "surface-container": "#edeef0",
-            "primary-fixed": "#e3dfff",
-            "on-secondary-container": "#fefbff",
+            secondary: "#2968ff",
+            background: "#f8f9fb",
+            surface: "#ffffff",
             "surface-container-low": "#f3f4f6",
-            "on-secondary-fixed-variant": "#003cac",
-            "background": "#f8f9fb",
-            "on-tertiary-fixed": "#181c22",
-            "error": "#ba1a1a",
-            "primary": "#2400ac",
-            "on-secondary-fixed": "#00164d",
-            "on-background": "#191c1e",
-            "surface-container-high": "#e7e8ea",
-            "on-tertiary-container": "#b6b9c2",
-            "on-primary-fixed-variant": "#3823c9",
-            "surface-dim": "#d9dadc",
-            "secondary-container": "#2968ff",
-            "on-surface": "#191c1e",
-            "tertiary-fixed": "#dfe2eb",
-            "on-error": "#ffffff",
             "surface-container-lowest": "#ffffff",
-            "tertiary-fixed-dim": "#c3c6cf"
-          },
-          borderRadius: {
-            DEFAULT: "0.25rem",
-            lg: "0.5rem",
-            xl: "0.75rem",
-            full: "9999px"
-          },
-          spacing: {
-            "margin-desktop": "40px",
-            "max-width": "1440px",
-            "margin-mobile": "16px",
-            "gutter": "24px",
-            "unit": "4px"
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#464555",
+            "outline-variant": "#c8c4d8",
+            outline: "#777587",
           },
           fontFamily: {
-            "headline-lg": ["Hanken Grotesk", "sans-serif"],
-            "display-lg": ["Hanken Grotesk", "sans-serif"],
-            "label-sm": ["JetBrains Mono", "monospace"],
-            "body-lg": ["Inter", "sans-serif"],
-            "body-md": ["Inter", "sans-serif"],
-            "title-md": ["Hanken Grotesk", "sans-serif"],
-            "headline-lg-mobile": ["Hanken Grotesk", "sans-serif"]
-          },
-          fontSize: {
-            "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
-            "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
-            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
-            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
-            "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
-            "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }]
-          },
-          boxShadow: {
-            'level-1': '0 4px 20px rgba(59, 40, 204, 0.04)',
-            'level-2': '0 8px 30px rgba(59, 40, 204, 0.08)',
+            headline: ["Hanken Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["JetBrains Mono", "monospace"],
           }
         }
       }
     }
   </script>
-
   <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    .material-symbols-outlined.fill {
-      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    .card-hover {
-      transition: all 0.2s ease-in-out;
-    }
-    .card-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(59, 40, 204, 0.08);
-    }
-    .btn-scale {
-      transition: transform 0.15s ease-out;
-    }
-    .btn-scale:active {
-      transform: scale(0.96);
-    }
-    /* Full-bleed hero background. Keeping the hero outside the content max-width
-       prevents the image from being clipped by the page container. */
-    .hero-bg {
-      background-image: linear-gradient(rgba(25, 28, 30, 0.68), rgba(25, 28, 30, 0.68)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJi4_xhn5mI-vSDlYqu2SA2iso77u44GgDUHRTnF4CPl8VDSsnletK5xy792bMApaTm5e85yIRpnXXbgNnfw_SSLXc0jiHTg4RSbWkCMcHbhZmC5P9mfDoTk28ndMCy5Sv6RkOUd_YMo0S_lm-irRQGqfN9ZPZmZJatIzohMjo_6Ge75NCz7wFIqgLC1z1DMnUvBjehm1l2avhD664Ly8iizg2GLjtNyi7mQ9HyWn5bqjgkfdNNV5dSA');
+   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+   .card-hover { transition: all 0.2s ease; }
+   .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59, 40, 204, 0.08); }
+   .hero-bg {
+      background-image: linear-gradient(rgba(25, 28, 30, 0.7), rgba(25, 28, 30, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
       background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      width: 100%;
-      min-height: 520px;
-    }
-
-    @media (max-width: 767px) {
-      .hero-bg {
-        min-height: 560px;
-        background-attachment: scroll;
-        background-position: center center;
-      }
+      background-position: center;
+      min-height: 560px;
     }
   </style>
 </head>
 
-<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<body class="bg-background text-on-surface font-body antialiased min-h-screen flex flex-col">
 
-<!-- ====== HEADER ====== -->
-<header class="bg-surface dark:bg-surface-container-low border-b border-outline-variant z-50 sticky top-0">
-  <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
+<!-- HEADER -->
+<header class="bg-surface border-b border-outline-variant sticky top-0 z-50">
+  <div class="flex justify-between items-center h-16 md:h-20 px-4 md:px-10 max-w-[1440px] mx-auto">
     <div class="flex items-center gap-4">
-      <button id="mobile-menu-toggle" class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle menu">
+      <button id="mobile-menu-toggle" class="md:hidden p-2" aria-label="Toggle menu">
         <span class="material-symbols-outlined">menu</span>
       </button>
-      <a href="#" class="flex items-center">
-        <img alt="GRAVLOC Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJID81zmGX7zchqiqKZ37c8YC2UVhtHHVpfn99boKUb5ji3gy26m2tes6PtomToYoBCA_gAdh_AFkrVcf1SA4ZxZ_gpqA2jVy7gvROZlwgFQkFd_JJvxqf10lORiL5Z29mT1lGPBrc6zYFMWLhS4CuZY6lyXzFUeWHbwrI6YtLItHMqgGU3g5qcC_la4YdhD6zC8311T1gcgXaArLOmkOeid5aOid4nHAHFLROOIue0rt_S0RKzrwf2QLNzYKB1Sekeaw">
+      <a href="/" class="flex items-center gap-2.5">
+        <img alt="GRAVLOC" class="h-8 md:h-10 w-auto" src="/images/logo-dark.png">
+        <span class="font-headline font-bold text-[20px] hidden md:block">GRAVLOC</span>
       </a>
     </div>
-
-    <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-8">
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/index">Home</a>
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/catalogue">Catalogue</a>
-      <!-- RFQ link – shown only when logged in -->
-      <a id="rfq-nav-link" class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200 hidden" href="/rfq">RFQ</a>
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200" href="/suppliers">Supplier Program</a>
+      <a class="font-headline font-medium hover:text-primary transition-colors" href="/">Home</a>
+      <a class="font-headline font-medium hover:text-primary transition-colors" href="/catalogue">Catalogue</a>
+      <a id="rfq-nav-link" class="font-headline font-medium hover:text-primary transition-colors hidden" href="/rfq">RFQ</a>
+      <a class="font-headline font-medium hover:text-primary transition-colors" href="/suppliers">Supplier Program</a>
     </nav>
-
-    <!-- Right Actions -->
-    <div class="flex items-center gap-2 md:gap-4">
-      <div id="auth-buttons" class="flex items-center gap-2 md:gap-4">
-        <a href="/login" class="font-title-md text-[16px] font-medium text-on-surface-variant hover:text-primary transition-colors duration-200">Log In</a>
-        <a href="/signup" class="bg-primary text-on-primary px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-title-md text-[14px] md:text-[16px] font-semibold transition-all duration-200 btn-scale shadow-level-1" style="background: linear-gradient(135deg, rgb(59, 40, 204) 0%, rgb(38, 103, 255) 100%);">Sign Up</a>
+    <div class="flex items-center gap-4">
+      <div id="auth-buttons" class="flex items-center gap-4">
+        <a href="/login" class="font-medium hover:text-primary">Log In</a>
+        <a href="/signup" class="bg-primary text-on-primary px-5 md:px-6 py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-sm">Sign Up</a>
       </div>
-      <div id="user-menu" class="hidden items-center gap-2 md:gap-4">
-        <span class="font-body-md text-on-surface-variant text-sm" id="user-email">user@example.com</span>
-        <button id="logout-btn" class="font-title-md text-[16px] font-medium text-primary hover:text-primary-container transition-colors duration-200">Logout</button>
+      <div id="user-menu" class="hidden items-center gap-4">
+        <span id="user-email" class="text-sm text-on-surface-variant max-w-[150px] truncate"></span>
+        <button id="logout-btn" class="font-medium text-primary hover:underline">Logout</button>
       </div>
     </div>
   </div>
-
-  <!-- Mobile Menu Panel -->
-  <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-outline-variant shadow-lg">
-    <nav class="flex flex-col px-4 py-4 gap-2">
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/index">Home</a>
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/catalogue">Catalogue</a>
-      <a id="mobile-rfq-link" class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors hidden" href="/rfq">RFQ</a>
-      <a class="font-title-md text-[18px] font-medium text-on-surface-variant hover:text-primary transition-colors" href="/suppliers">Supplier Program</a>
+  <div id="mobile-menu" class="hidden md:hidden border-t bg-surface px-4 py-4">
+    <nav class="flex flex-col gap-3">
+      <a class="py-2 font-medium" href="/">Home</a>
+      <a class="py-2 font-medium" href="/catalogue">Catalogue</a>
+      <a id="mobile-rfq-link" class="py-2 font-medium hidden" href="/rfq">RFQ</a>
+      <a class="py-2 font-medium" href="/suppliers">Supplier Program</a>
     </nav>
   </div>
 </header>
 
-  <!-- ====== MAIN ====== -->
-  <main class="flex-grow">
+<main class="flex-grow">
 
-    <!-- ====== HERO ====== -->
-    <section class="hero-bg py-14 md:py-32 px-4 md:px-margin-desktop flex flex-col items-center justify-center text-center w-full">
-      <h1 class="font-display-lg text-[32px] md:text-[64px] md:leading-[72px] mb-4 md:mb-6 max-w-4xl tracking-tight text-white">
-        Source space-grade components with confidence
-      </h1>
-      <p class="font-body-lg text-base md:text-body-lg mb-8 md:mb-12 max-w-2xl text-white/80">
-        Discover, compare, and verify mission-critical hardware from trusted global suppliers. The procurement engine for the next frontier.
-      </p>
+  <!-- HERO -->
+  <section class="hero-bg py-16 md:py-32 px-4 md:px-10 flex flex-col items-center justify-center text-center">
+    <h1 class="font-headline text-[32px] md:text-[64px] md:leading-[72px] font-bold mb-6 max-w-4xl text-white">
+      Source space-grade components with confidence
+    </h1>
+    <p class="font-body text-base md:text-lg mb-10 max-w-2xl text-white/80">
+      Discover, compare, and verify mission-critical hardware from trusted global suppliers. The procurement engine for the next frontier.
+    </p>
+    <div class="w-full max-w-3xl mb-10 relative">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+      <input id="search-input" class="w-full pl-12 pr-4 py-4 rounded-xl border bg-white text-on-surface placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm" placeholder="Search Components, Specifications, or NSNs..." type="text">
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+      <a class="inline-flex justify-center bg-primary text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors" href="/catalogue">Explore Catalogue</a>
+      <a class="inline-flex justify-center bg-white text-primary px-8 py-3.5 rounded-lg font-semibold hover:bg-gray-50 transition-colors" href="/suppliers">Join as Supplier</a>
+    </div>
+  </section>
 
-      <!-- Search Bar -->
-      <div class="w-full max-w-3xl mb-8 md:mb-12 relative group">
-        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <span class="material-symbols-outlined text-outline">search</span>
-        </div>
-        <input class="w-full pl-12 pr-4 py-3 md:py-5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface font-body-lg placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 shadow-level-1 transition-all" placeholder="Search Components, Specifications, or NSNs..." type="text">
+  <!-- CATEGORIES -->
+  <section class="py-12 md:py-16 bg-white border-y border-outline-variant/50 px-4 md:px-10">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="font-headline text-2xl md:text-[32px] font-semibold">Browse by Subsystem</h2>
+        <a class="font-label text-xs uppercase tracking-widest text-primary hover:underline flex items-center gap-1" href="/catalogue">View All <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
       </div>
-
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md sm:max-w-none">
-        <a class="inline-flex justify-center items-center bg-primary text-on-primary w-full sm:w-auto px-5 md:px-8 py-3 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-primary/90 transition-colors duration-200 btn-scale shadow-level-1" href="/catalogue">
-          Explore Catalogue
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=rf">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">satellite_alt</span></div>
+          <h3 class="font-headline font-semibold">RF & Antennas</h3>
         </a>
-        <a class="inline-flex justify-center items-center bg-surface-container-lowest text-primary w-full sm:w-auto px-5 md:px-8 py-3 md:py-3.5 rounded-lg font-title-md text-sm md:text-[16px] font-semibold hover:bg-surface-container transition-colors duration-200 btn-scale shadow-level-1" href="/suppliers">
-          Join as Supplier
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=power">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">bolt</span></div>
+          <h3 class="font-headline font-semibold">Power Systems</h3>
+        </a>
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=structures">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">architecture</span></div>
+          <h3 class="font-headline font-semibold">Structures</h3>
+        </a>
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=thermal">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">thermostat</span></div>
+          <h3 class="font-headline font-semibold">Thermal Systems</h3>
+        </a>
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=electronics">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">memory</span></div>
+          <h3 class="font-headline font-semibold">Electronics</h3>
+        </a>
+        <a class="bg-background p-5 rounded-xl border card-hover flex items-center gap-4" href="/catalogue?filter=testing">
+          <div class="p-3 bg-surface-container-low rounded-lg text-primary"><span class="material-symbols-outlined">science</span></div>
+          <h3 class="font-headline font-semibold">Testing</h3>
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ====== CATEGORIES ====== -->
-    <section class="py-12 md:py-16 bg-surface-bright px-4 md:px-margin-desktop border-y border-outline-variant/50">
-      <div class="max-w-max-width mx-auto">
-        <div class="flex items-center justify-between mb-8 md:mb-10">
-          <h2 class="font-headline-lg text-2xl md:text-headline-lg text-on-surface">Browse by Subsystem</h2>
-          <a class="font-label-sm text-primary hover:text-primary/80 uppercase tracking-wider flex items-center gap-1 group" href="/catalogue">
-            View All Categories
-            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </a>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-          <!-- 6 category cards (same as before) -->
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="/antennas">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">satellite_alt</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">RF &amp; Antennas</h3>
-          </a>
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">bolt</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Power Systems</h3>
-          </a>
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">architecture</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Structures &amp; Fasteners</h3>
-          </a>
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">thermostat</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Thermal Systems</h3>
-          </a>
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">memory</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Electronics &amp; PCBs</h3>
-          </a>
-          <a class="bg-surface-container-lowest p-4 md:p-6 rounded-xl border border-outline-variant/60 shadow-level-1 card-hover flex items-center gap-3 md:gap-4 group min-h-[76px]" href="#">
-            <div class="p-2 md:p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors flex-shrink-0">
-              <span class="material-symbols-outlined text-[24px] md:text-[28px]">science</span>
-            </div>
-            <h3 class="font-title-md text-[15px] md:text-[18px] text-on-surface leading-tight">Testing &amp; Facilities</h3>
-          </a>
+  <!-- FEATURED -->
+  <section class="py-12 md:py-20 px-4 md:px-10 max-w-[1440px] mx-auto">
+    <h2 class="font-headline text-2xl md:text-[32px] font-semibold mb-8">Featured Components</h2>
+    <div class="flex flex-col gap-6">
+      <div class="bg-white border rounded-xl overflow-hidden flex flex-col md:flex-row card-hover">
+        <img class="md:w-64 h-48 md:h-auto object-cover bg-gray-100" src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=500&auto=format&fit=crop" alt="Reaction wheel">
+        <div class="p-6 md:p-8 flex flex-col justify-center flex-grow">
+          <div class="flex gap-3 mb-2"><span class="bg-gray-100 text-xs px-2 py-1 rounded font-label">ADCS</span><span class="text-xs text-gray-500 font-label">TRL 9</span></div>
+          <h3 class="font-headline text-xl font-semibold mb-2">RW-400 High-Torque Reaction Wheel</h3>
+          <p class="text-sm text-on-surface-variant mb-4 max-w-2xl">Compact, low-jitter reaction wheel for microsatellite platforms with integrated drive electronics.</p>
+          <div class="mt-auto pt-4 flex justify-between border-t text-xs"><span class="text-primary font-medium uppercase">In Stock • Qty: 42</span><a href="/component/rw-400" class="font-semibold text-primary hover:underline">View Component</a></div>
         </div>
       </div>
-    </section>
+      <!-- Duplicate for other 2 products -->
+    </div>
+  </section>
 
-    <!-- ====== FEATURED PRODUCTS ====== -->
-    <section class="py-12 md:py-20 px-4 md:px-margin-desktop max-w-max-width mx-auto">
-      <h2 class="font-headline-lg text-2xl md:text-headline-lg text-on-surface mb-8 md:mb-10">Featured Components</h2>
-      <div class="flex flex-col gap-6">
-        <!-- Product 1 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row relative">
-          <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfd4wcxiR4i08yUy76kzRo1maXqkoCl0ROsgGJAbKI7UwKe1-jRtzffX8pVxrEg60s8KmdvM5WoIYwmmygSN9z-wyU0C5P9Ndbktbhj82EGtKJg33w6AziOEajKdqwwUtx71YJMomtyZJhec8jD5xdepM8KsEtNHrri2Hw53k-AWPnvZM445dXhg-f12FrzU-YqMWrfhO7ObwjPh0B6Ksniw6kYoLLocgukEvQic2Aorg5O_0J5i2ZMA" alt="Reaction wheel">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">ADCS</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 9</span>
-            </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">RW-400 High-Torque Reaction Wheel</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Compact, low-jitter reaction wheel designed for demanding pointing requirements in microsatellite platforms. Features integrated drive electronics.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-primary uppercase tracking-wide text-xs md:text-sm">In Stock • Qty: 42</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
-            </div>
-          </div>
-        </div>
+</main>
 
-        <!-- Product 2 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row">
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqBKGdYRfsuc6qDjdN2BD09PEdWERCN8ILtZxDwi-CvoIvUxQhdyD54aaOVJht4YhuB-_jUfdxsrbNw8HxXQS6oyS_VNBbrVJ-h7L1ByXjxELgzZQJyqe-4VAtsUv_rw2CLKHoKld9RLxKToiw0XHPsqV-V3jdROv9Ae0HNI4V3DZMGjKX0BGRDjidGjrHAjN1EokPTaIcRzpEysKaFRhDciFCbRBXyU9o550TaOM4OCC0fzOaUgKzUw" alt="Rad-hard SoC">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">AVIONICS</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 7</span>
-            </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">RadHard Cortex-M7 OBC Core</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Radiation-tolerant processing core with triple modular redundancy (TMR). Ideal for deep space mission critical command and data handling.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-outline uppercase tracking-wide text-xs md:text-sm">Lead Time: 12 Weeks</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-[12px] shadow-level-1 overflow-hidden flex flex-col md:flex-row">
-          <div class="md:w-64 h-48 md:h-auto bg-surface-container-low flex-shrink-0">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIcdE6tlf9NfeIxPqfoYAef8ED2LXNAxIoUVZM059aSE6TOersnsDB2WMk3K4ZB12EkUP632a5FYFbuKfsfnwP5QzFNF1zfUBvIiw0SckzHcOa83eC4HaO_ne8jjtUgWuAmpsJd-Q6EjSGJjMRo89T1qNS60y9BzJGH7IeHVB5tf3cuMsLxmEfQR6TT3niNlUSjPXSNJ3VADsfZKXtlZQ74XfaYdjjyJa_3XWtlyyh9PM8cRjBeTIW_w" alt="Deployer system">
-          </div>
-          <div class="p-5 md:p-8 flex flex-col justify-center flex-grow">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="bg-surface-container text-on-surface font-label-sm px-2 py-1 rounded">DEPLOYMENT</span>
-              <span class="text-on-surface-variant font-label-sm">TRL 9</span>
-            </div>
-            <h3 class="font-title-md text-[20px] md:text-[22px] text-on-surface mb-2">12U Orbit Deployer System (ODS)</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-4 max-w-2xl">Flight-proven deployer for 12U form factors. Utilizes non-explosive actuators and provides telemetry for deployment confirmation.</p>
-            <div class="mt-auto pt-4 flex flex-wrap items-center justify-between border-t border-outline-variant/30 gap-2">
-              <span class="font-label-sm text-primary uppercase tracking-wide text-xs md:text-sm">In Stock • Qty: 3</span>
-              <button class="bg-transparent text-primary font-title-md text-[14px] font-semibold hover:underline">View Component</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== TRUST BAR ====== -->
-    <section class="py-8 md:py-12 border-t border-outline-variant/30 bg-surface">
-      <div class="max-w-max-width mx-auto px-4 md:px-margin-desktop text-center">
-        <p class="font-label-sm text-outline uppercase tracking-widest mb-6 md:mb-8">Trusted by tier-1 aerospace integrators</p>
-        <div class="flex flex-wrap justify-center gap-6 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          <div class="h-8 w-24 md:w-32 bg-outline-variant/40 rounded-full"></div>
-          <div class="h-8 w-20 md:w-24 bg-outline-variant/40 rounded"></div>
-          <div class="h-8 w-28 md:w-40 bg-outline-variant/40 rounded-full"></div>
-          <div class="h-8 w-20 md:w-28 bg-outline-variant/40 rounded"></div>
-          <div class="h-8 w-24 md:w-32 bg-outline-variant/40 rounded-full hidden sm:block"></div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-<footer class="bg-gradient-to-br from-inverse-surface via-primary-container to-accent-indigo dark:bg-surface-container-lowest border-t border-outline-variant">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-12 gap-gutter">
-    
-    <!-- Brand Column -->
-    <div class="col-span-12 lg:col-span-4 space-y-6">
+<footer class="bg-[#191c1e] text-white">
+  <div class="max-w-[1440px] mx-auto px-4 md:px-10 py-16 grid grid-cols-2 lg:grid-cols-6 gap-8">
+    <div class="col-span-2 space-y-4">
       <div class="flex items-center gap-2.5">
-        <img alt="GRAVLOC" class="h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.35)]" src="/images/White logo.png" />
-        <span class="font-headline-lg font-bold text-[20px] tracking-tight text-white leading-none">GRAVLOC</span>
+        <img alt="GRAVLOC" class="h-8 w-auto" src="/images/White logo.png">
+        <span class="font-headline font-bold text-xl">GRAVLOC</span>
       </div>
-      <p class="text-inverse-on-surface font-body-sm max-w-xs opacity-70">
-        © 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.
-      </p>
-      <div class="flex gap-4">
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/company/gravloc/" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect width="4" height="12" x="2" y="9"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
-          </svg>
-        </a>
-        <!-- Twitter (X) -->
-        <a href="https://x.com/Gravloc" class="text-inverse-on-surface opacity-70 hover:opacity-100 transition-opacity" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-          </svg>
-        </a>
-      </div>
+      <p class="text-sm opacity-60 max-w-xs">© 2026 GRAVLOC. All rights reserved. Precision procurement for mission-critical systems.</p>
     </div>
-
-    <!-- Platform Column -->
-    <div class="col-span-6 lg:col-span-2 space-y-4">
-      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Platform</h4>
-      <ul class="space-y-2">
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/suppliers">Supplier Program</a>
-        </li>
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="/catalogue">Catalogue</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Support Column -->
-    <div class="col-span-6 lg:col-span-2 space-y-4">
-      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Support</h4>
-      <ul class="space-y-2">
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Contact</a>
-        </li>
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Feedback</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Company Column -->
-    <div class="col-span-6 lg:col-span-2 space-y-4">
-      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Company</h4>
-      <ul class="space-y-2">
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">About Us</a>
-        </li>
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Articles</a>
-        </li>
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Careers</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Legal Column -->
-    <div class="col-span-6 lg:col-span-2 space-y-4">
-      <h4 class="font-label-mono text-xs text-white uppercase tracking-widest">Legal</h4>
-      <ul class="space-y-2">
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Privacy</a>
-        </li>
-        <li>
-          <a class="text-outline-variant hover:text-white transition-colors text-body-sm" href="#">Terms</a>
-        </li>
-      </ul>
-    </div>
-
+    <div class="space-y-3"><h4 class="text-xs uppercase tracking-widest opacity-80">Platform</h4><ul class="space-y-2 text-sm opacity-60"><li><a href="/suppliers" class="hover:text-white">Supplier Program</a></li><li><a href="/catalogue" class="hover:text-white">Catalogue</a></li></ul></div>
+    <div class="space-y-3"><h4 class="text-xs uppercase tracking-widest opacity-80">Support</h4><ul class="space-y-2 text-sm opacity-60"><li><a href="/contact" class="hover:text-white">Contact</a></li></ul></div>
+    <div class="space-y-3"><h4 class="text-xs uppercase tracking-widest opacity-80">Company</h4><ul class="space-y-2 text-sm opacity-60"><li><a href="/about" class="hover:text-white">About Us</a></li></ul></div>
+    <div class="space-y-3"><h4 class="text-xs uppercase tracking-widest opacity-80">Legal</h4><ul class="space-y-2 text-sm opacity-60"><li><a href="/privacy" class="hover:text-white">Privacy</a></li><li><a href="/terms" class="hover:text-white">Terms</a></li></ul></div>
   </div>
+  <div class="border-t border-white/10 py-4 text-center text-xs opacity-40">STAGING ENVIRONMENT - staging.gravloc.com</div>
 </footer>
 
-  <!-- ====== SCRIPTS ====== -->
-  <script>
-  // ---- Authentication state management ----
-  function checkAuth() {
-    const loggedIn = localStorage.getItem('gravloc_logged_in') === 'true';
-    const userEmail = localStorage.getItem('gravloc_user_email') || 'user@example.com';
-    const authButtons = document.getElementById('auth-buttons');
-    const userMenu = document.getElementById('user-menu');
-    const rfqLink = document.getElementById('rfq-nav-link');
-    const mobileRfqLink = document.getElementById('mobile-rfq-link');
-    const userEmailSpan = document.getElementById('user-email');
-
-    if (loggedIn) {
-      authButtons.classList.add('hidden');
-      userMenu.classList.remove('hidden');
-      rfqLink.classList.remove('hidden');
-      mobileRfqLink.classList.remove('hidden');
-      if (userEmailSpan) userEmailSpan.textContent = userEmail;
-    } else {
-      authButtons.classList.remove('hidden');
-      userMenu.classList.add('hidden');
-      rfqLink.classList.add('hidden');
-      mobileRfqLink.classList.add('hidden');
-    }
-  }
-
-  // Logout
-  document.getElementById('logout-btn')?.addEventListener('click', function() {
-    localStorage.removeItem('gravloc_logged_in');
-    localStorage.removeItem('gravloc_user_email');
-    window.location.href = '/index';
+<script>
+  // Mobile menu
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
   });
 
-  // Mobile menu toggle (keep existing code)
-  // ... (your existing toggle code)
-
-  // Run auth check on load
+  // Auth
+  function checkAuth() {
+    const loggedIn = localStorage.getItem('gravloc_logged_in') === 'true';
+    const email = localStorage.getItem('gravloc_user_email');
+    document.getElementById('auth-buttons')?.classList.toggle('hidden', loggedIn);
+    const userMenu = document.getElementById('user-menu');
+    if(userMenu){
+      userMenu.classList.toggle('hidden',!loggedIn);
+      userMenu.classList.toggle('flex', loggedIn);
+    }
+    document.getElementById('rfq-nav-link')?.classList.toggle('hidden',!loggedIn);
+    document.getElementById('mobile-rfq-link')?.classList.toggle('hidden',!loggedIn);
+    if(email) document.getElementById('user-email').textContent = email;
+  }
+  document.getElementById('logout-btn')?.addEventListener('click', () => {
+    localStorage.removeItem('gravloc_logged_in');
+    localStorage.removeItem('gravloc_user_email');
+    location.href = '/';
+  });
   checkAuth();
 </script>
 
